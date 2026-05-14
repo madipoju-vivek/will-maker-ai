@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "General Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --radius: 0.625rem;
+
+    --background: 15% 0.02 250;
+    --foreground: 95% 0.01 250;
+    --card: 18% 0.018 250;
+    --card-foreground: 95% 0.01 250;
+    --popover: 22% 0.015 250;
+    --popover-foreground: 95% 0.01 250;
+
+    --primary: 60% 0.15 230;
+    --primary-foreground: 95% 0.01 250;
+
+    --secondary: 22% 0.01 250;
+    --secondary-foreground: 85% 0.01 250;
+    --muted: 35% 0.01 250;
+    --muted-foreground: 55% 0.01 250;
+
+    --accent: 65% 0.15 60;
+    --accent-foreground: 15% 0.02 250;
+
+    --destructive: 55% 0.22 25;
+    --destructive-foreground: 95% 0.01 250;
+
+    --border: 25% 0.01 250;
+    --input: 22% 0.015 250;
+    --ring: 60% 0.15 230;
+
+    --chart-1: 60% 0.15 230;
+    --chart-2: 65% 0.15 60;
+    --chart-3: 50% 0.12 185;
+    --chart-4: 45% 0.08 160;
+    --chart-5: 40% 0.07 220;
+
+    --sidebar: 18% 0.018 250;
+    --sidebar-foreground: 95% 0.01 250;
+    --sidebar-primary: 60% 0.15 230;
+    --sidebar-primary-foreground: 95% 0.01 250;
+    --sidebar-accent: 25% 0.01 250;
+    --sidebar-accent-foreground: 85% 0.01 250;
+    --sidebar-border: 22% 0.015 250;
+    --sidebar-ring: 60% 0.15 230;
+  }
+
+  .dark {
+    --background: 15% 0.02 250;
+    --foreground: 95% 0.01 250;
+    --card: 18% 0.018 250;
+    --card-foreground: 95% 0.01 250;
+    --popover: 22% 0.015 250;
+    --popover-foreground: 95% 0.01 250;
+
+    --primary: 60% 0.15 230;
+    --primary-foreground: 15% 0.02 250;
+
+    --secondary: 22% 0.01 250;
+    --secondary-foreground: 85% 0.01 250;
+    --muted: 25% 0.01 250;
+    --muted-foreground: 55% 0.01 250;
+
+    --accent: 65% 0.15 60;
+    --accent-foreground: 15% 0.02 250;
+
+    --destructive: 65% 0.19 22;
+    --destructive-foreground: 95% 0.01 250;
+
+    --border: 25% 0.01 250;
+    --input: 22% 0.015 250;
+    --ring: 60% 0.15 230;
+
+    --chart-1: 60% 0.15 230;
+    --chart-2: 65% 0.15 60;
+    --chart-3: 50% 0.12 185;
+    --chart-4: 45% 0.08 160;
+    --chart-5: 40% 0.07 220;
+
+    --sidebar: 18% 0.018 250;
+    --sidebar-foreground: 95% 0.01 250;
+    --sidebar-primary: 60% 0.15 230;
+    --sidebar-primary-foreground: 95% 0.01 250;
+    --sidebar-accent: 25% 0.01 250;
+    --sidebar-accent-foreground: 85% 0.01 250;
+    --sidebar-border: 22% 0.015 250;
+    --sidebar-ring: 60% 0.15 230;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "General Sans";
+    src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url("/assets/fonts/SpaceGrotesk-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url("/assets/fonts/SpaceGrotesk-600.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url("/assets/fonts/SpaceGrotesk-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "General Sans";
+    src: url("/assets/fonts/GeneralSans-400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "General Sans";
+    src: url("/assets/fonts/GeneralSans-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("/assets/fonts/GeistMono-400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .glass {
+    background: oklch(22% 0.015 250 / 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid oklch(25% 0.01 250 / 0.3);
+  }
+
+  .glass-hover {
+    @apply glass transition-all hover:bg-[oklch(25%_0.015_250_/_0.8)] hover:border-[oklch(35%_0.015_250_/_0.5)];
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px oklch(60% 0.15 230 / 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px oklch(65% 0.15 60 / 0.3);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(60% 0.15 230),
+      oklch(50% 0.12 185)
+    );
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, oklch(65% 0.15 60), oklch(55% 0.18 40));
+  }
+
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-glow {
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

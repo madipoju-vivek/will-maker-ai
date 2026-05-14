@@ -1,0 +1,110 @@
+// Version: 1.0.0
+type Asset__387421348 =
+  {
+    assetType : Text;
+    beneficiaryName : Text;
+    description : Text;
+    estimatedValue : Text
+  };
+type Beneficiary__396518305 =
+  {contact : Text; name : Text; relationship : Text; share : Text};
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type DocumentId__446996092 = Text;
+type DocumentInternal__912344316 =
+  {
+    createdAt : Int;
+    documentType : DocumentType__1018277930;
+    var formData : FormData__238095933;
+    var generatedContent : ?Text;
+    id : Text;
+    var shareToken : ?Text;
+    var status : DocumentStatus__739782820;
+    title : Text;
+    var updatedAt : Int;
+    userId : Principal
+  };
+type DocumentStatus__739782820 = {#draft; #final_};
+type DocumentType__1018277930 =
+  {#healthcareDirective; #lastWill; #powerOfAttorney};
+type ExecutorInfo__393434483 =
+  {
+    executorContact : Text;
+    executorName : Text;
+    executorRelationship : Text;
+    guardianContact : Text;
+    guardianName : Text;
+    guardianRelationship : Text
+  };
+type FormData__238095933 =
+  {
+    step1 : ?PersonalDetails__6099557;
+    step2 : ?[Beneficiary__396518305];
+    step3 : ?[Asset__387421348];
+    step4 : ?ExecutorInfo__393434483;
+    step5 : ?HealthcarePreferences__539914638
+  };
+type HealthcarePreferences__539914638 =
+  {
+    additionalWishes : Text;
+    healthcareProxy : Text;
+    lifeSupport : Text;
+    organDonation : Text;
+    proxyContact : Text
+  };
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type Map__222667396<K, V> = Map__912772452<K, V>;
+type Map__709709801<K, V> =
+  {var root : Node__1000929467<K, V>; var size : Nat__1040412405};
+type Map__912772452<K, V> = Map__709709801<K, V>;
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type PersonalDetails__6099557 =
+  {
+    address : Text;
+    city : Text;
+    country : Text;
+    dateOfBirth : Text;
+    fullName : Text;
+    maritalStatus : Text;
+    state : Text
+  };
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Principal;
+type UserProfile__446616884 =
+  {createdAt : Int; email : Text; name : Text; phone : Text};
+type UserRole__1073662873 = {#admin; #guest; #user};
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__222667396<Principal, UserRole__1073662873>
+    };
+  stable docState : {var nextId : Nat};
+  stable documents :
+    {
+      var root :
+        Node__1000929467<DocumentId__446996092, DocumentInternal__912344316>;
+      var size : Nat__1040412405
+    };
+  stable openAIApiKey : {var value : ?Text};
+  stable profileCreatedAt :
+    {
+      var root : Node__1000929467<UserId__158757552, Timestamp__301639476>;
+      var size : Nat__1040412405
+    };
+  stable rateLimitState :
+    {
+      var root : Node__1000929467<UserId__158757552, Timestamp__301639476>;
+      var size : Nat__1040412405
+    };
+  stable userProfiles :
+    {
+      var root : Node__1000929467<UserId__158757552, UserProfile__446616884>;
+      var size : Nat__1040412405
+    }
+};

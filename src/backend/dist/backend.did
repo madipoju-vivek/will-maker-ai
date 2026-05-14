@@ -1,0 +1,159 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type UserSummary = 
+ record {
+   createdAt: int;
+   documentCount: nat;
+   email: text;
+   name: text;
+   userId: principal;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   createdAt: int;
+   email: text;
+   name: text;
+   phone: text;
+ };
+type UpdateDocumentRequest = 
+ record {
+   formData: opt FormData;
+   status: opt DocumentStatus;
+   title: opt text;
+ };
+type ShareToken = text;
+type PlatformStats = 
+ record {
+   documentsThisMonth: nat;
+   totalDocuments: nat;
+   totalUsers: nat;
+   usersThisMonth: nat;
+ };
+type PersonalDetails = 
+ record {
+   address: text;
+   city: text;
+   country: text;
+   dateOfBirth: text;
+   fullName: text;
+   maritalStatus: text;
+   state: text;
+ };
+type HealthcarePreferences = 
+ record {
+   additionalWishes: text;
+   healthcareProxy: text;
+   lifeSupport: text;
+   organDonation: text;
+   proxyContact: text;
+ };
+type FormData = 
+ record {
+   step1: opt PersonalDetails;
+   step2: opt vec Beneficiary;
+   step3: opt vec Asset;
+   step4: opt ExecutorInfo;
+   step5: opt HealthcarePreferences;
+ };
+type ExecutorInfo = 
+ record {
+   executorContact: text;
+   executorName: text;
+   executorRelationship: text;
+   guardianContact: text;
+   guardianName: text;
+   guardianRelationship: text;
+ };
+type DocumentType = 
+ variant {
+   healthcareDirective;
+   lastWill;
+   powerOfAttorney;
+ };
+type DocumentStatus = 
+ variant {
+   draft;
+   final;
+ };
+type DocumentId = text;
+type Document = 
+ record {
+   createdAt: int;
+   documentType: DocumentType;
+   formData: FormData;
+   generatedContent: opt text;
+   id: text;
+   shareToken: opt text;
+   status: DocumentStatus;
+   title: text;
+   updatedAt: int;
+   userId: principal;
+ };
+type CreateDocumentRequest = 
+ record {
+   documentType: DocumentType;
+   formData: FormData;
+   status: DocumentStatus;
+   title: text;
+ };
+type Beneficiary = 
+ record {
+   contact: text;
+   name: text;
+   relationship: text;
+   share: text;
+ };
+type Asset = 
+ record {
+   assetType: text;
+   beneficiaryName: text;
+   description: text;
+   estimatedValue: text;
+ };
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initializeAccessControl: () -> ();
+  adminGetPlatformStats: () -> (PlatformStats) query;
+  adminListUsers: () -> (vec UserSummary) query;
+  adminSetOpenAIApiKey: (key: text) -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createDocument: (req: CreateDocumentRequest) -> (Document);
+  deleteDocument: (docId: DocumentId) -> (bool);
+  generateShareLink: (docId: DocumentId) -> (text);
+  generateWillDocument: (docId: DocumentId) -> (text);
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getDocument: (docId: DocumentId) -> (opt Document) query;
+  getDocumentByShareToken: (token: ShareToken) -> (opt Document) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  isCallerAdmin: () -> (bool) query;
+  isOpenAIConfigured: () -> (bool) query;
+  listMyDocuments: () -> (vec Document) query;
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  updateDocument: (docId: DocumentId, req: UpdateDocumentRequest) -> (bool);
+}

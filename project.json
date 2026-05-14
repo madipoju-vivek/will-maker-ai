@@ -1,0 +1,24 @@
+{
+  "overview": "Will Maker AI is a full-stack AI-powered legal document platform where users create wills, power of attorney, and healthcare directives through a guided multi-step form. AI generates professionally structured documents instantly, stored securely with PDF download support.",
+  "features": [
+    "AI-powered will document generation",
+    "Multi-step guided form (5 steps)",
+    "User dashboard with document management",
+    "PDF download support",
+    "Admin panel with analytics",
+    "Role-based access control",
+    "Dark-blue premium responsive UI",
+    "Internet Identity authentication"
+  ],
+  "category": "productivity",
+  "tags": [
+    "legal",
+    "will",
+    "estate-planning",
+    "ai",
+    "document-generator",
+    "dashboard",
+    "admin"
+  ],
+  "last_updated": "2026-05-14T12:23:41.786Z"
+}
